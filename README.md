@@ -7,16 +7,16 @@ A simple side project that can be used to record a week of spending.
 
 ## Functions
 
-### 記帳本主體<br>Bookkeeping main page
+### 記帳本主體<!--<br>Bookkeeping main page -->
 <img src="https://i.imgur.com/injXMIs.png" width=50%>
 
-### 增加新的交易紀錄<br>Adding new transaction records
+### 增加新的交易紀錄<!--<br>Adding new transaction records -->
 <img src="https://i.imgur.com/3PDjM0D.png" width=50%>
 
-### 上方的圖表會動態依據交易紀錄金額做改變<br>The chart above will dynamically change according to the transaction amount
+### 上方的圖表會動態依據交易紀錄金額做改變<!--<br>The chart above will dynamically change according to the transaction amount -->
 <img src="https://i.imgur.com/MpQ7eak.png" width=50%>
 
-### 按下刪除鍵可以輕鬆刪掉錯誤的交易紀錄<br>Erroneous transactions can be easily erased by pressing the delete button
+### 按下刪除鍵可以輕鬆刪掉錯誤的交易紀錄<!--<br>Erroneous transactions can be easily erased by pressing the delete button -->
 <img src="https://i.imgur.com/yGelXPi.png" width=50%>
 
 ## Roadmap
