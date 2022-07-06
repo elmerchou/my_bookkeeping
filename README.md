@@ -2,6 +2,7 @@
 ![Flutter](https://img.shields.io/badge/Made%20with-Flutter-02569B?logo=Flutter&style=for-the-badge)
 
 一個簡單的side project，可用來記錄一星期的消費。
+
 A simple side project that can be used to record a week of spending.
 
 ## Functions
