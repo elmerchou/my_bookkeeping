@@ -15,6 +15,15 @@ class Transaction {
     @required this.amount,
     @required this.date,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'amount': amount,
+      'date': date.toString(), //可能要改
+    };
+  }
 }
 
 class TransactionDB {
@@ -38,5 +47,38 @@ class TransactionDB {
       return database;
     }
     return await initDatabase();
+  }
+
+  //下方為正式方法
+
+  static Future<List<Transaction>> getTransactions() async {
+    final Database db = await getDBConnect();
+    final List<Map<String, dynamic>> maps = await db.query('transactions');
+    return List.generate(maps.length, (i) {
+      return Transaction(
+        id: maps[i]['id'],
+        title: maps[i]['title'],
+        amount: maps[i]['amount'],
+        date: DateTime.parse(maps[i]['date']),
+      );
+    });
+  }
+
+  static Future<void> addTransactions(Transaction tx) async {
+    final Database db = await getDBConnect();
+    await db.insert(
+      'transactions',
+      tx.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  static Future<void> deleteTransactions(String id) async {
+    final Database db = await getDBConnect();
+    await db.delete(
+      'transactions',
+      where: "id = ?",
+      whereArgs: [id],
+    );
   }
 }
