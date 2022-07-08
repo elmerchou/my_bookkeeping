@@ -31,10 +31,10 @@ class TransactionDB {
 
   static Future<Database> initDatabase() async {
     database = await openDatabase(
-      join(await getDatabasesPath(), 'transaction.db'),
+      join(await getDatabasesPath(), 'transactions.db'),
       onCreate: (db, version) {
         return db.execute(
-          "CREATE TABLE transactions(id TEXT PRIMARY KEY, title TEXT, amount DOUBLE, date TEXT)",
+          "CREATE TABLE transactionss(id TEXT PRIMARY KEY, title TEXT, amount INTEGER, date TEXT)",
         );
       },
       version: 1,
@@ -53,7 +53,7 @@ class TransactionDB {
 
   static Future<List<Transaction>> getTransactions() async {
     final Database db = await getDBConnect();
-    final List<Map<String, dynamic>> maps = await db.query('transactions');
+    final List<Map<String, dynamic>> maps = await db.query('transactionss');
     return List.generate(maps.length, (i) {
       return Transaction(
         id: maps[i]['id'],
@@ -67,7 +67,7 @@ class TransactionDB {
   static Future<void> addTransactions(Transaction tx) async {
     final Database db = await getDBConnect();
     await db.insert(
-      'transactions',
+      'transactionss',
       tx.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
@@ -76,7 +76,7 @@ class TransactionDB {
   static Future<void> deleteTransactions(String id) async {
     final Database db = await getDBConnect();
     await db.delete(
-      'transactions',
+      'transactionss',
       where: "id = ?",
       whereArgs: [id],
     );

@@ -56,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   void initState() {
     WidgetsBinding.instance.addObserver(this);
+    getTransactions();
     super.initState();
   }
 
@@ -74,23 +75,28 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     }).toList();
   }
 
-  void _addNewTransaction(String title, int amount, DateTime date) {
+  void getTransactions() async {
+    final list = await TransactionDB.getTransactions();
+    setState(() {
+      _userTransaction = list;
+      print('success');
+    });
+  }
+
+//OK
+  void _addNewTransaction(String title, int amount, DateTime date) async {
     final newTx = Transaction(
         title: title,
         amount: amount,
         date: date,
         id: DateTime.now().toString());
-    setState(() {
-      _userTransaction.add(newTx);
-    });
+    await TransactionDB.addTransactions(newTx);
+    getTransactions();
   }
 
   void _deleteTransaction(String id) {
-    setState(() {
-      _userTransaction.removeWhere((element) {
-        return element.id == id;
-      });
-    });
+    TransactionDB.deleteTransactions(id);
+    getTransactions();
   }
 
   void _startAddNewTransaction(BuildContext context) {
