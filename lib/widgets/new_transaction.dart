@@ -191,6 +191,7 @@ class _NewTransactionState extends State<NewTransaction> {
               decoration: InputDecoration(labelText: '標題'),
               controller: _titleController,
               onSubmitted: (_) => _submitData(),
+              style: TextStyle(fontSize: 15),
               // onChanged: (val) {
               //   titleInput = val;
               // },
@@ -200,10 +201,11 @@ class _NewTransactionState extends State<NewTransaction> {
               controller: _amountController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => _submitData(),
+              style: TextStyle(fontSize: 15),
               // onChanged: (val) => amountInput = val,
             ),
             Container(
-              height: 70,
+              height: 35,
               child: Row(
                 children: <Widget>[
                   Expanded(
